@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagani Inspired Website</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            overflow-x: hidden;
+            color: #fff;
+            background: #000;
+        }
+
+        /* Fullscreen Sections */
+        section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        section:nth-child(odd) {
+            background: url('./pagani_with_exhaust.webp') no-repeat center center/cover;
+        }
+
+        section:nth-child(even) {
+            background: url('./black_opacity_pagani.jpg') no-repeat center center/cover;
+        }
+
+        /* Overlay Effect */
+        section::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        section h1 {
+            z-index: 1;
+            font-size: 4em;
+            font-family: 'Playfair Display', serif;
+            color: #ffd700;
+            margin: 0;
+            text-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        section p {
+            z-index: 1;
+            font-size: 1.5em;
+            margin-top: 20px;
+            color: #f0f0f0;
+            animation: fadeInUp 1.2s ease-in-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Navigation Menu */
+        nav {
+            position: fixed;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 15px 0;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            font-size: 1.2em;
+            color: #ffd700;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: #fff;
+            transform: scale(1.2);
+            text-shadow: 0 0 10px #ffd700;
+        }
+
+        /* Secondary Logo */
+        .secondary-logo {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 11;
+        }
+
+        .secondary-logo img {
+            width: 100px;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .secondary-logo img:hover {
+            transform: scale(1.2);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #111;
+            color: #bbb;
+            font-size: 0.9em;
+        }
+
+        footer a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('nav ul li a');
+            const sections = document.querySelectorAll('section');
+
+            window.addEventListener('scroll', () => {
+                let current = "";
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= sectionTop - sectionHeight / 3) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').substring(1) === current) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div class="secondary-logo">
+    <img src="./pagani2.webp" alt="Secondary Logo">
+</div>
+
+<nav>
+    <ul>
+        <li><a href="#section1">01</a></li>
+        <li><a href="#section2">02</a></li>
+        <li><a href="#section3">03</a></li>
+        <li><a href="#section4">04</a></li>
+    </ul>
+</nav>
+
+<section id="section1">
+    <h1>IMOLA ROADSTER</h1>
+    <p>High-performance on the open road.</p>
+</section>
+
+<section id="section2">
+    <h1>HUAYRA R</h1>
+    <p>Track-focused perfection.</p>
+</section>
+
+<section id="section3">
+    <h1>ZONDA LEGACY</h1>
+    <p>Where it all began.</p>
+</section>
+
+<section id="section4">
+    <h1>PAGANI FUTURE</h1>
+    <p>The next chapter of innovation.</p>
+</section>
+
+<footer>
+    <p>&copy; 2024 Pagani Automobili. <a href="#">Privacy Policy</a></p>
+</footer>
+
+</body>
+</html>
